@@ -26,6 +26,6 @@ public class Project {
     private Double co2Estimate;
 
     @ManyToOne
-    @JoinColumn(name= "organization id", nullable = false)
+    @JoinColumn(name= "organization_id", nullable = false)
     private Organization organization;
 }
