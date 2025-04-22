@@ -11,6 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("projects")
 public class ProjectController {
+
     @Autowired private ProjectService service;
 
     @GetMapping
@@ -21,6 +22,14 @@ public class ProjectController {
     @GetMapping("{id}")
     public Project getById(@PathVariable Long id) {
         return service.findById(id);
+    }
+
+    @GetMapping("filter")
+    public List<Project> getFilteredProjects(
+            @RequestParam(value = "region", required = false) String region,
+            @RequestParam(value = "organizationName", required = false) String organizationName
+    ) {
+        return service.findFilteredProjects(region, organizationName);
     }
 
     @ResponseStatus(HttpStatus.CREATED)

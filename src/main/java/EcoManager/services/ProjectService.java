@@ -18,6 +18,18 @@ public class ProjectService {
         return repository.findAll();
     }
 
+    public List<Project> findFilteredProjects(String region, String organizationName) {
+        if (region != null && organizationName != null) {
+            return repository.findByRegionAndOrganizationNameContainingIgnoreCase(region, organizationName);
+        } else if (region != null) {
+            return repository.findByRegionContainingIgnoreCase(region);
+        } else if (organizationName != null) {
+            return repository.findByOrganizationNameContainingIgnoreCase(organizationName);
+        } else {
+            return repository.findAll();
+        }
+    }
+
     public Project findById(Long id) {
         return repository.findById(id).orElse(null);
     }
