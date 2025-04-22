@@ -23,6 +23,13 @@ public class OrganizationController {
         return service.findById(id);
     }
 
+    @GetMapping("/filter")
+    public List<Organization> getFiltered(@RequestParam(required = false) String name,
+                                          @RequestParam(required = false) String contact) {
+        return service.findAllByFilter(name, contact);
+    }
+
+
     @PostMapping
     public Organization post(@RequestBody Organization organization) {
         organization.setId(null);

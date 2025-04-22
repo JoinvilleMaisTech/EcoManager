@@ -20,6 +20,13 @@ public class OrganizationService {
         return repository.findById(id).orElse(null);
     }
 
+    public List<Organization> findAllByFilter(String name, String contact) {
+        if (name == null && contact == null) {
+            return findAll();
+        }
+        return repository.findByNameOrContact(name, contact);
+    }
+
     public Organization save(Organization organization) {
         if (organization.getId() != null) {
             Organization old = findById(organization.getId());
