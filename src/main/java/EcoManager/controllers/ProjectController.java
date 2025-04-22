@@ -23,6 +23,7 @@ public class ProjectController {
         return service.findById(id);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public Project post(@RequestBody Project project) {
         project.setId(null);
